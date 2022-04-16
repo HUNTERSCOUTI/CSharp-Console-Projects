@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolTask", "SchoolTask\SchoolTask.csproj", "{2CB232C8-A7D4-49DB-A117-406C76BFA6B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryConverter", "BinaryConverter\BinaryConverter\BinaryConverter.csproj", "{19EF9177-C833-4774-A4D4-3385640005F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrundforløbProject070422", "GrundforløbProject070422\GrundforløbProject070422\GrundforløbProject070422.csproj", "{4EB8521A-09D4-44BF-89B0-6A8B12A7814E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Match3", "Match3\Match3\Match3.csproj", "{6CBBE355-A185-4786-BE65-67779576FA53}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tents", "Tents\Tents\Tents.csproj", "{1B23A7D0-F31B-44C1-97DE-BC92CA56AF29}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3games", "3Games\3games.csproj", "{5C99777B-51B2-43AA-8BA5-8C5782C88453}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CB232C8-A7D4-49DB-A117-406C76BFA6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB232C8-A7D4-49DB-A117-406C76BFA6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB232C8-A7D4-49DB-A117-406C76BFA6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB232C8-A7D4-49DB-A117-406C76BFA6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19EF9177-C833-4774-A4D4-3385640005F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19EF9177-C833-4774-A4D4-3385640005F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19EF9177-C833-4774-A4D4-3385640005F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19EF9177-C833-4774-A4D4-3385640005F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB8521A-09D4-44BF-89B0-6A8B12A7814E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB8521A-09D4-44BF-89B0-6A8B12A7814E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB8521A-09D4-44BF-89B0-6A8B12A7814E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB8521A-09D4-44BF-89B0-6A8B12A7814E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CBBE355-A185-4786-BE65-67779576FA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CBBE355-A185-4786-BE65-67779576FA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CBBE355-A185-4786-BE65-67779576FA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CBBE355-A185-4786-BE65-67779576FA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B23A7D0-F31B-44C1-97DE-BC92CA56AF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B23A7D0-F31B-44C1-97DE-BC92CA56AF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B23A7D0-F31B-44C1-97DE-BC92CA56AF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B23A7D0-F31B-44C1-97DE-BC92CA56AF29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C99777B-51B2-43AA-8BA5-8C5782C88453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C99777B-51B2-43AA-8BA5-8C5782C88453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C99777B-51B2-43AA-8BA5-8C5782C88453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C99777B-51B2-43AA-8BA5-8C5782C88453}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67AF4F06-D2C5-41FE-B24D-8A23CA4440C6}
+	EndGlobalSection
+EndGlobal

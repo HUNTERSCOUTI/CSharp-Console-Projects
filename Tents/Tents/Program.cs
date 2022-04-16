@@ -1,4 +1,4 @@
-#region System
+﻿#region System
 using System;
 using System.Threading;
 using System.Collections.Generic;

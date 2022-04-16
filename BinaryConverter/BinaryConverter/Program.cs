@@ -1,4 +1,4 @@
-class BinaryConverter
+﻿class DecimalToBinary
 {
     public static void Main()
     {
