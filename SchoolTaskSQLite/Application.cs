@@ -72,9 +72,7 @@ public class Application
 			int.TryParse(Console.ReadLine(), out var _money)
 				? _money
 				: 0; //tryparse returns a bool (if it could parse or not) and if true it just returns the var, if false 0.
-
 		#region reset
-
 		while (student.Age == 0)
 		{
 			Console.Clear();
@@ -82,16 +80,9 @@ public class Application
 			Console.Write("\n\nEnter Student Age : ");
 			student.Age = int.TryParse(Console.ReadLine(), out var _money2) ? _money2 : 0;
 		}
-
 		#endregion
 
 		//GENDER
-		Console.Write("\nEnter Student Gender [M/F] : ");
-		student.Gender = Console.ReadKey().KeyChar;
-		student.Gender = Char.ToUpper(student.Gender); //Makes sure it's upper case
-
-		#region reset
-
 		while (student.Gender != 'M' && student.Gender != 'F')
 		{
 			Console.Clear();
@@ -102,8 +93,6 @@ public class Application
 			student.Gender = Char.ToUpper(student.Gender); //Makes sure it's upper case
 		}
 
-		#endregion
-
 		//ADRESS
 		Console.Write("\n\nEnter Student Adress [Steet, Number, Post, City] : ");
 		student.Address = Console.ReadLine();
@@ -111,13 +100,13 @@ public class Application
 		//EDUCATION LINE
 		student.EdLine = InputHelper.GetValidatedString("Enter Student Education Line: ", s => IsValidString(s));
 
+		//Class
 		student.Class = InputHelper.GetValidatedString("Enter Student Class: ", s => IsValidString(s));
 
+		//Subjects
 		await using var scope = _serviceProvider.CreateAsyncScope();
 		var context = scope.ServiceProvider.GetRequiredService<StudentDbContext>();
-
 		Console.WriteLine("\nEnter Student Subjects [Enter for new subject & end with !] : ");
-
 		var subjects = new List<Subject>();
 		string input = string.Empty;
 		while (true)
@@ -127,9 +116,7 @@ public class Application
 			{
 				break;
 			}
-
 			var existingSubject = await context.Subjects.FirstOrDefaultAsync(x => x.Name == input);
-
 			if (existingSubject != null)
 			{
 				subjects.Add(existingSubject);

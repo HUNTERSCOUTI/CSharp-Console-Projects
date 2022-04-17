@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolTask", "SchoolTask\Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryConverter", "BinaryConverter\BinaryConverter\BinaryConverter.csproj", "{19EF9177-C833-4774-A4D4-3385640005F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumberEvaluator", "NumberEvaluator\NumberEvaluator.csproj", "{4EB8521A-09D4-44BF-89B0-6A8B12A7814E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrundforløbProject070422", "GrundforløbProject070422\GrundforløbProject070422\GrundforløbProject070422.csproj", "{4EB8521A-09D4-44BF-89B0-6A8B12A7814E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Match3", "Match3\Match3\Match3.csproj", "{6CBBE355-A185-4786-BE65-67779576FA53}"
 EndProject
