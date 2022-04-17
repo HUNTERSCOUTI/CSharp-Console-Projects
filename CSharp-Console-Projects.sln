@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolTask", "SchoolTask\Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryConverter", "BinaryConverter\BinaryConverter\BinaryConverter.csproj", "{19EF9177-C833-4774-A4D4-3385640005F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Match3", "Match3\Match3\Match3.csproj", "{6CBBE355-A185-4786-BE65-67779576FA53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Match3", "Match3\Match3.csproj", "{6CBBE355-A185-4786-BE65-67779576FA53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tents", "Tents\Tents\Tents.csproj", "{1B23A7D0-F31B-44C1-97DE-BC92CA56AF29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tents", "Tents\Tents.csproj", "{1B23A7D0-F31B-44C1-97DE-BC92CA56AF29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3games", "3Games\3games.csproj", "{5C99777B-51B2-43AA-8BA5-8C5782C88453}"
 EndProject
