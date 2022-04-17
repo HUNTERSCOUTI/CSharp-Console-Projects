@@ -1,4 +1,4 @@
-<h1 align="center"> Student Database with SQLite </h1>
+<h1 align="center"> SchoolTask Student Database with SQLite </h1>
 
 <h3 align="center"> This is an expansion of <a href="https://github.com/HUNTERSCOUTI/CSharp-Console-Projects/tree/main/SchoolTask">this</a> project </h3>
 
