@@ -1,6 +1,6 @@
 <h1 align="center"> Student Database with SQLite </h1>
 
-### This is an expansion of [this](https://github.com/HUNTERSCOUTI/CSharp-Console-Projects/tree/main/SchoolTask) project
+<h3 align="center"> This is an expansion of <a href="https://github.com/HUNTERSCOUTI/CSharp-Console-Projects/tree/main/SchoolTask">this</a> project </h3>
 
 I've gotten a lot of help with the SQLite stuff from Pobiega#2671 on discord where he's explained what everything is and helped code a lot of it.
 It's a simple database where you can Add, Update, Remove and Get info on students.
