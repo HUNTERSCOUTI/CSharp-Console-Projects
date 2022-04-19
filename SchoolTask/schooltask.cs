@@ -64,17 +64,6 @@ class StudentDB
         }
     }
 
-    /* Student class contains
-       ID (int)
-       Name (String)
-       Age (Int)
-       Gender (Char)
-       Adress (String)
-       EdLine (String)
-       Class (String)
-       Subjects (List<string>)
-    */
-
     public static void AddStudent()
     {
         Student student = new Student();
