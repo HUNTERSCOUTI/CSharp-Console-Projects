@@ -8,33 +8,69 @@ namespace Match3
 {
     public class GameState
     {
-        private int[] guesses = new int[3];
-        private int currentGuess = 0;
+        private DataPoint[] _guesses = new DataPoint[3];
+        public int Guess { get; private set; }
 
-        private DataPoint[,] data;
+        public DataPoint[,] BoardNumbers { get; }
 
         public GameState(int columns, int rows)
         {
-            data = new DataPoint[columns, rows];
+            BoardNumbers = new DataPoint[columns, rows];
 
             for (int x = 0; x < columns; x++)
             {
                 for (int y = 0; y < rows; y++)
                 {
-                    data[x, y] = new DataPoint(Random.Shared.Next(0, 10));
+                    BoardNumbers[x, y] = new DataPoint(Random.Shared.Next(1, 4));
                 }
             }
         }
+
+        public DataPoint TakeNumber(int column)
+        {
+            DataPoint bestValue = BoardNumbers[column, 0];
+            for (int row = 0; row < BoardNumbers.GetLength(1); row++)
+            {
+                var currentValue = BoardNumbers[column, row];
+                if (!currentValue.Available)
+                {
+                    bestValue.Available = false;
+                    return bestValue;
+                }
+                bestValue = currentValue;
+            }
+            bestValue.Available = false;
+            return bestValue;
+        }
+
+        public void CheckMatch(int num1, int num2, int num3)
+        {
+            if (num1 != num2 || num2 != num3)
+            {
+                foreach (DataPoint point in _guesses)
+                {
+                    point.Available = true;
+                }
+            }
+            Guess = 0;
+            _guesses = new DataPoint[3];
+        }
+
+        public void AddGuess(DataPoint guess)
+        {
+            _guesses[Guess] = guess;
+            Guess++;
+        }
     }
-    public struct DataPoint
+    public class DataPoint
     {
-        public int value;
-        public bool available;
+        public int Value { get; set; }
+        public bool Available { get; set; }
 
         public DataPoint(int val)
         {
-            value = val;
-            available = true;
+            Value = val;
+            Available = true;
         }
     }
 }

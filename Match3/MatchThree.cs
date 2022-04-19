@@ -1,18 +1,10 @@
-﻿#region System
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+﻿using Match3;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-#endregion
 
-class main
+
+public class Match3Program
 {
     #region Fullscreen Variables
-
     [DllImport("kernel32.dll", ExactSpelling = true)]
     private static extern IntPtr GetConsoleWindow();
     private static IntPtr ThisConsole = GetConsoleWindow();
@@ -24,160 +16,108 @@ class main
     private const int RESTORE = 9;
     #endregion
 
-    public static int[] XNumPos = new int[] { 86, 92, 98 };
-    public static int YNumPos = 45;
-    public static int[,] NumBoard = new int[11, 6];
-    public static int Guess = 1;
-
-    public static int[] plyNums = new int[3];
-    public static int Points = 0;
-    public static bool Game = true;
-
-    public static int[] PlaceX = new int[] { 26, 52, 78, 104, 130, 156 };
-    public static int[] PlaceY = new int[] { 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 };
-
     public static void Main()
     {
         Console.Title = "Match 3";
         Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
         ShowWindow(ThisConsole, MAXIMIZE);
 
+        var game = new Match3Game();
+        game.Run();
+    }
+}
 
-        DrawNums();
-        DrawBoard();
-        Console.SetCursorPosition(XNumPos[0], YNumPos);
-        while (Game)
+
+
+public class Match3Game
+{
+    private GameState _state;
+    private const int YNumPos = 45;
+
+    private static readonly int[] XNumPos = new int[] { 86, 92, 98 };
+    private static readonly int[] PlaceX = new int[] { 26, 52, 78, 104, 130, 156 };
+    private static readonly int[] PlaceY = new int[] { 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 };
+
+    public void Run()
+    {
+        _state = new GameState(6, 11);
+
+        while (_state.Guess < 3)
         {
-            PlyMove();
+            Print();
+            PlayerMove();
         }
     }
 
-    public static void PlyMove()
+    private void PlayerMove()
     {
-        if (Guess == 1)
-        {
-            Console.SetCursorPosition(XNumPos[0], YNumPos);
-        }
-        else if (Guess == 2)
-        {
-            Console.SetCursorPosition(XNumPos[1], YNumPos);
-        }
-        else if (Guess == 3)
-        {
-            Console.SetCursorPosition(XNumPos[2], YNumPos);
-        }
+        Console.SetCursorPosition(XNumPos[_state.Guess], YNumPos);
+        bool stopLoop = false;
 
-        while (Console.KeyAvailable && Guess != 4)
+        while (!stopLoop)
         {
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.D1:
                     PickColumn(0);
+                    stopLoop = true;
                     break;
                 case ConsoleKey.D2:
                     PickColumn(1);
+                    stopLoop = true;
                     break;
                 case ConsoleKey.D3:
                     PickColumn(2);
+                    stopLoop = true;
                     break;
                 case ConsoleKey.D4:
-                    plyNums[Guess - 1] = NumBoard[10, 3];
-                    Console.SetCursorPosition(XNumPos[Guess - 1], YNumPos);
-                    Console.Write(NumBoard[10, 3]);
-                    Guess++;
+                    PickColumn(3);
+                    stopLoop = true;
                     break;
                 case ConsoleKey.D5:
-                    plyNums[Guess - 1] = NumBoard[10, 4];
-                    Console.SetCursorPosition(XNumPos[Guess - 1], YNumPos);
-                    Console.Write(NumBoard[10, 4]);
-                    Guess++;
+                    PickColumn(4);
+                    stopLoop = true;
                     break;
                 case ConsoleKey.D6:
-                    plyNums[Guess - 1] = NumBoard[10, 5];
-                    Console.SetCursorPosition(XNumPos[Guess - 1], YNumPos);
-                    Console.Write(NumBoard[10, 5]);
-                    Guess++;
-                    break;
-                default:
+                    PickColumn(5);
+                    stopLoop = true;
                     break;
             }
         }
-        if (Guess == 4)
-        {
-            CheckMatch(plyNums[0], plyNums[1], plyNums[2]);
-        }
     }
 
-    public static void PickColumn(int columnIndex)
+    public void PickColumn(int columnIndex)
     {
-        var firstAvailableItem = GetFirstAvailableItemInColumn(columnIndex);
-        //plyNums[Guess - 1] = firstAvailableItem.value;
-        //SetItemAsUnavailable(columnIndex, firstAvailableItem.index);
-        //Console.SetCursorPosition(PlaceX[firstAvailableItem.index], PlaceY[columnIndex]);
-        //Console.Write(" ");
-        //Console.SetCursorPosition(XNumPos[Guess - 1], YNumPos);
-        //Console.Write(firstAvailableItem.value);
-        //Guess++;
+        var result = _state.TakeNumber(columnIndex);
+        _state.AddGuess(result);
     }
 
-    private static void SetItemAsUnavailable(int columnIndex, object index)
+    private void Print()
     {
+        DrawBoard();
+        DrawNums();
         
     }
 
-    private static object GetFirstAvailableItemInColumn(int columnIndex)
+    private void DrawNums()
     {
-        int num = 0;
-        for (int r = 0; r < NumBoard.GetLength(0); r++)
-        {
-            for (int c = columnIndex; c == columnIndex; c++)
-            {
-                num = NumBoard[r, c];
-            }
-        }
-
-        return num;
-    }
-
-    public static void CheckMatch(int num1, int num2, int num3)
-    {
-        if (num1 == num2 && num2 == num3)
-        {
-            Points++;
-        }
-        else
-        {
-            Console.SetCursorPosition(90, 43);
-            Console.Write("Wrong");
-        }
-        Thread.Sleep(2000);
-        for (int i = 0; i < XNumPos.Length; i++)
-        {
-            Console.SetCursorPosition(XNumPos[i], YNumPos);
-            Console.Write(" ");
-        }
-        Guess = 1;
-    }
-
-    public static void DrawNums()
-    {
-        Random rng = new Random();
         int y = 0;
-
         for (int i = 0; i < 36; i++)
         {
             for (int j = 0; j < 6; j++)
             {
-                NumBoard[y, j] = rng.Next(1, 4);
-                Console.SetCursorPosition(PlaceX[j], PlaceY[y]);
-                Console.Write(NumBoard[y, j]);
+                if (_state.BoardNumbers[j, y].Available)
+                {
+                    Console.SetCursorPosition(PlaceX[j], PlaceY[y]);
+                    Console.Write(_state.BoardNumbers[j, y].Value);  
+                }
             }
             y++;
             if (y == PlaceY.Length) y = 0;
         }
     }
 
-    public static void DrawBoard()
+    public void DrawBoard()
     {
         #region Edges
         //Top and Bottom
@@ -223,5 +163,9 @@ class main
             botNums++;
         }
         #endregion
+
+
     }
 }
+
+//OLD CODE = https://paste.mod.gg/lbnujzipoypu/0
