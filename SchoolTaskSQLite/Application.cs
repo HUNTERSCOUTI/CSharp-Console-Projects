@@ -68,10 +68,8 @@ public class Application
 		Student student = new Student();
 		//AGE
 		Console.Write("\nEnter Student Age : ");
-		student.Age =
-			int.TryParse(Console.ReadLine(), out var _money)
-				? _money
-				: 0; //tryparse returns a bool (if it could parse or not) and if true it just returns the var, if false 0.
+		student.Age = int.TryParse(Console.ReadLine(), out var _money) ? _money : 0; 
+		//tryparse returns a bool (if it could parse or not) and if true it just returns the var, if false 0.
 		#region reset
 		while (student.Age == 0)
 		{
