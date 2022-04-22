@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace SchoolTaskSQLite;
 
-public class Application
+public class Application //Same code from previous School Task
 {
 	private readonly IServiceProvider _serviceProvider;
 
@@ -58,11 +58,11 @@ public class Application
 	}
 
 	private static bool IsValidString(string s) => s.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
-
+	//Checking wether or not the inputed string is valid or not and using the char "IsLetter" and "IsWhiteSpace" to check if it's charaters or whitespace
+	
 	public async Task AddStudent()
 	{
 		//NAME
-
 		var name = InputHelper.GetValidatedString("Enter students name: ", s => IsValidString(s));
 
 		Student student = new Student();
