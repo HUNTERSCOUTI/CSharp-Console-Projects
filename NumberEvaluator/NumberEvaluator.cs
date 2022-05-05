@@ -9,7 +9,6 @@
                           "\t        End with '!'\n");
         while (true)
         {
-
             input = Console.ReadLine();
 
             if (double.TryParse(input, out double result))

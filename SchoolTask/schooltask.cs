@@ -299,6 +299,7 @@ class StudentDB
         }
         else
         {
+            Console.Clear();
             StudentDB.Main();
         }
         string strResultJson = JsonConvert.SerializeObject(students);
