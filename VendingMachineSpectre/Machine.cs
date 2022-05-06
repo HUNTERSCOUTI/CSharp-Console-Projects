@@ -2,8 +2,12 @@
 
 public class Machine
 {
+    public void Run()
+    {
+        var Machine = new Table();
+    }
     public static void Main(string[] args)
     {
-        AnsiConsole.Markup("[underline bold yellow]Hello[/] [red]World![/]");
+        Console.Write("Second");
     }
 }

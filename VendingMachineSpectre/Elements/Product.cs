@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachineSpectre;
 
-class Products
+public class Product
 {
     public Guid Id { get; set; }
 
@@ -14,6 +14,8 @@ class Products
 
     public int Cost { get; set; }
 
-    public List<string>? NtList { get; set; }
+    public virtual ICollection<Nutrition>? Nutritions { get; set; }
+
+    public override string ToString() => $"\nName: {Name}\nCost: {Cost}\nNutritions " + String.Join(", ", Nutritions) +"\n";
 }
 

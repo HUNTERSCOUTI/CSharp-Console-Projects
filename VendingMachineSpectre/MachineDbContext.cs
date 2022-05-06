@@ -13,5 +13,9 @@ internal class MachineDbContext : DbContext
     {
         optionsBuilder.UseSqlite("Data Source = vendmach.db");
     }
+
+    public DbSet<Product>? Products { get; set; }
+    public DbSet<Nutrition>? Nutritions { get; set; }
+    public DbSet<User>? Users { get; set; }
 }
 
