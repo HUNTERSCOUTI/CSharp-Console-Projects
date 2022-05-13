@@ -24,10 +24,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumberEvaluator", "NumberEv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test Code Project", "Test Code Project\Test Code Project.csproj", "{1B8CC87C-DB06-4440-865F-8AA4E736D285}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineSpectre", "VendingMachineSpectre\VendingMachineSpectre.csproj", "{93392BEC-9131-40E5-9C26-6389A11AA497}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingWallet", "VendingWallet\VendingWallet.csproj", "{2A638B15-9629-40B0-8031-71A6D5EB8A21}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,14 +62,6 @@ Global
 		{1B8CC87C-DB06-4440-865F-8AA4E736D285}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B8CC87C-DB06-4440-865F-8AA4E736D285}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B8CC87C-DB06-4440-865F-8AA4E736D285}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93392BEC-9131-40E5-9C26-6389A11AA497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93392BEC-9131-40E5-9C26-6389A11AA497}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93392BEC-9131-40E5-9C26-6389A11AA497}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93392BEC-9131-40E5-9C26-6389A11AA497}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A638B15-9629-40B0-8031-71A6D5EB8A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A638B15-9629-40B0-8031-71A6D5EB8A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A638B15-9629-40B0-8031-71A6D5EB8A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A638B15-9629-40B0-8031-71A6D5EB8A21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
