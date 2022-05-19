@@ -1,16 +1,9 @@
-﻿using System;
-
-class Program
+﻿int cols = Console.WindowWidth, rows = Console.WindowHeight;
+//some sample text
+byte[] buffer = Enumerable.Repeat((byte)'=', cols * rows).ToArray();
+//because output appends, ensure the window is reset
+Console.SetCursorPosition(0, 0);
+using (Stream stdout = Console.OpenStandardOutput(cols * rows))
 {
-    static void Main(string[] args)
-    {
-        int a = 20;
-
-        int b = 10;
-
-        Console.WriteLine(a + b);
-    }
+    stdout.Write(buffer, 0, buffer.Length);
 }
-
-
-
