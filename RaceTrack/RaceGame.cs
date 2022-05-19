@@ -7,56 +7,14 @@ using System.Runtime.InteropServices;
 
 namespace RaceTrack;
 
-class RaceGame
+public partial class RaceGame
 {
-    public const char pWrite = '*';
-    public const char wallV = '║';
-    public const char wallH = '═';
+    public static bool run = true;
 
     public static int pX = 80;
     public static int pY = 5;
 
-    public static bool run = true;
-
-    public static string WallsString =
-        "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                                                    |                                                    ║\n" +
-        "║                  ╔═══════════════════════════════════════════════════════════════════╗                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ╚═══════════════════════════════════════════════════════════════════╝                  ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝";
-    
     public static void Run()
-    {
-        Draw();
-    }
-
-    public static void Draw()
     {
         MapDraw();
         while (run)
@@ -69,7 +27,7 @@ class RaceGame
 
     public static void PlayerDraw(char toWrite, int x, int y)
     {
-        Console.SetCursorPosition(x, y); // DELETE OLD
+        Console.SetCursorPosition(x, y);
         Console.Write(toWrite);
     }
 
@@ -110,6 +68,9 @@ class RaceGame
                 case ConsoleKey.RightArrow:
                     ClearOldPos(pX, pY);
                     newX++;
+                    break;
+                default:
+
                     break;
             }
             if(CanMove(newX, newY))
