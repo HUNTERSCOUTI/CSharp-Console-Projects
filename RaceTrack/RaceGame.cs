@@ -17,6 +17,8 @@ public partial class RaceGame
     public static void Run()
     {
         MapDraw();
+        //for(int i = 0; i<TrackByte.Length; i++)
+        //SendToBuffer(TrackByte[i]);
         while (run)
         {
             Console.CursorVisible = false;
@@ -34,10 +36,10 @@ public partial class RaceGame
     public static void MapDraw()
     {
         Console.SetCursorPosition(0, 0);
-        Render(WallsString, false);
+        Render(Track1, false);
     }
 
-    static char BoardAt(int x, int y) => WallsString[y * 108 + x];
+    static char BoardAt(int x, int y) => Track1[y * 108 + x];
     static bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|';
     static bool CanMove(int x, int y) => !IsWall(x, y);
 
@@ -68,9 +70,6 @@ public partial class RaceGame
                 case ConsoleKey.RightArrow:
                     ClearOldPos(pX, pY);
                     newX++;
-                    break;
-                default:
-
                     break;
             }
             if(CanMove(newX, newY))

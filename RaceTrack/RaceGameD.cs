@@ -19,7 +19,8 @@ public partial class RaceGame
     public const char wallV = '║'; // NOT USED CURRENTLY
     public const char wallH = '═'; // NOT USED CURRENTLY
 
-    public static string WallsString =
+
+    public static string Track1 =
         "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
         "║                                                    |                                                    ║\n" +
         "║                                                    |                                                    ║\n" +
@@ -52,5 +53,18 @@ public partial class RaceGame
         "║                                                                                                         ║\n" +
         "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝";
 
-    public static void 
+    /*public static byte[] TrackByte = Encoding.ASCII.GetBytes(Track1);
+
+
+    public static void SendToBuffer(byte trackByte)
+    {
+        int cols = 108, rows = 30;
+        byte[] buffer = Enumerable.Repeat(trackByte, cols * rows).ToArray();
+        Console.SetCursorPosition(0, 0);
+        using (Stream stdout = Console.OpenStandardOutput(cols * rows))
+        {
+            stdout.Write(buffer, 0, buffer.Length);
+        }
+    }
+    */
 }
