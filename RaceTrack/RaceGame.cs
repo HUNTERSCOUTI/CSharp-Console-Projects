@@ -19,13 +19,16 @@ public partial class RaceGame
 
     public static void Run()
     {
-        MapDraw();
+        TrackDraw();
         while (run)
         {
             Console.CursorVisible = false;
             TimeWrite();
             GameWrite();
             PlayerMove();
+
+                GoalDraw();
+            
         }
     }
 
@@ -52,14 +55,21 @@ public partial class RaceGame
         Console.Write(toWrite);
     }
 
-    static void MapDraw()
+    static void TrackDraw()
     {
         Console.SetCursorPosition(0, 0);
         Render(Track1, false);
     }
 
+    static void GoalDraw()
+    {
+        Console.SetCursorPosition(0, 0);
+        Render(Track1Goal, false);
+    }
+
     static char BoardAt(int x, int y) => Track1[y * 108 + x];
     static bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|';
+    static bool IsGoal(int x, int y) => BoardAt(x, y) is '|';
     static bool CanMove(int x, int y) => !IsWall(x, y);
 
     static void PlayerMove()
@@ -89,6 +99,9 @@ public partial class RaceGame
                 case ConsoleKey.RightArrow:
                     ClearOldPos(pX, pY);
                     newX++;
+                    break;
+                default:
+                    ClearOldPos(pX+1, pY);
                     break;
             }
             if(CanMove(newX, newY))
