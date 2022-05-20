@@ -4,36 +4,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
+using System.Timers;
 
 namespace RaceTrack;
 
+
 public partial class RaceGame
 {
-    public static bool run = true;
+    static bool run = true;
 
-    public static int pX = 80;
-    public static int pY = 5;
+    static int pX = 80;
+    static int pY = 5;
 
     public static void Run()
     {
         MapDraw();
-        //for(int i = 0; i<TrackByte.Length; i++)
-        //SendToBuffer(TrackByte[i]);
         while (run)
         {
             Console.CursorVisible = false;
-            PlayerDraw(pWrite, pX, pY);
+            TimeWrite();
+            GameWrite();
             PlayerMove();
         }
     }
 
-    public static void PlayerDraw(char toWrite, int x, int y)
+    public static string TimeCalc(string _time)
+    {
+        while (run)
+        {
+            var timer = new Stopwatch();
+
+            timer.Start();
+
+            TimeSpan timeTaken = timer.Elapsed;
+
+            _time = "Time taken: " + timeTaken.ToString(@"ss\.fff");
+
+            return _time;
+        }
+        return string.Empty;
+    }
+
+    static void PlayerDraw(char toWrite, int x, int y)
     {
         Console.SetCursorPosition(x, y);
         Console.Write(toWrite);
     }
 
-    public static void MapDraw()
+    static void MapDraw()
     {
         Console.SetCursorPosition(0, 0);
         Render(Track1, false);
@@ -43,7 +62,7 @@ public partial class RaceGame
     static bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|';
     static bool CanMove(int x, int y) => !IsWall(x, y);
 
-    public static void PlayerMove()
+    static void PlayerMove()
     {
 
         if (Console.KeyAvailable)
