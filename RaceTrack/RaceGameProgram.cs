@@ -20,7 +20,7 @@ class RaceGameProgram
     private const int MINIMIZE = 6;
     private const int RESTORE = 9;
     #endregion
-
+    
     public static void Main()
     {
         Console.Title = "Race Game";

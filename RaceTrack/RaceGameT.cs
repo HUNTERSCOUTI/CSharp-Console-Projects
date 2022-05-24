@@ -8,16 +8,19 @@ namespace RaceTrack;
 
 public partial class RaceGame
 {
+    const char wallV = '║'; // NOT USED CURRENTLY
+    const char wallH = '═'; // NOT USED CURRENTLY
+
     public static string Track1 =
         "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
+        "║                                                     |                                                   ║\n" +
+        "║                                                     |                                                   ║\n" +
+        "║                                                     |                                                   ║\n" +
+        "║                                                     |                                                   ║\n" +
+        "║                                                     |                                                   ║\n" +
+        "║                                                     |                                                   ║\n" +
+        "║                                                     |                                                   ║\n" +
+        "║                                                     |                                                   ║\n" +
         "║                  ╔═══════════════════════════════════════════════════════════════════╗                  ║\n" +
         "║                  ║                                                                   ║                  ║\n" +
         "║                  ║                                                                   ║                  ║\n" +
@@ -41,7 +44,8 @@ public partial class RaceGame
         "║                                                                                                         ║\n" +
         "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝";
 
-    public static string Track1Goal =
+    /*
+     public static string Track1Goal =
         "\n" +
         "\t\t\t\t\t\t\t|\n" +
         "\t\t\t\t\t\t\t|\n" +
@@ -51,4 +55,5 @@ public partial class RaceGame
         "\t\t\t\t\t\t\t|\n" +
         "\t\t\t\t\t\t\t|\n" +
         "\t\t\t\t\t\t\t|";
+    */
 }

@@ -10,37 +10,59 @@ namespace RaceTrack;
 public partial class RaceGame
 {
     const char pWrite = '*';
-    const char wallV = '║'; // NOT USED CURRENTLY
-    const char wallH = '═'; // NOT USED CURRENTLY
 
-    static string Time = string.Empty;
+    static string Time = "00.000";
 
-    private static Stream stream = Stream.Null;  //Make an empty streamer
-    private static byte[] buffer = Array.Empty<byte>();  //Empty Array with byte as DataType
-
-    public static int Width { get; private set; }
-    public static int Height { get; private set; }
-
-    public static void StreamBufferInitialize()
-    {
-        stream = Console.OpenStandardOutput();  //Get's standard output stream
-        Width = 108;
-        Height = 30;
-        buffer = new byte[Width * Height];  //Sets the buffer to width * height in bytes
-    }
-
-    public static void GameWrite()
+    public static void PlayerWrite()
     {
         Console.SetCursorPosition(0, 0);
-        PlayerDraw(pWrite, pX, pY);
-        stream.Write(buffer);  
+        PlayerDraw(pWrite, pX, pY); 
+    }
+
+    public static void Die()
+    {
+        AfterGameScreen();
+    }
+
+    public static void ClearOldPos(int x, int y)
+    {
+        Console.SetCursorPosition(x, y);
+        Console.Write(" ");
     }
 
     public static void TimeWrite()
     {
+        string _pb = pb.ToString(@"ss\.fff");
+
         Console.SetCursorPosition(45, 13);
-        Console.Write(TimeCalc(Time));
+        Console.Write($"Time: {TimeCalc(Time)}\n" +
+       $"\t\t\t\t\t     Best Time: {_pb}");
+        
     }
     
+    public static void AfterGameScreen()
+    {
+        bool playerDecide = true;
+        string _endTime = endTime.ToString(@"ss\.fff");
+        string _pb = pb.ToString(@"ss\.fff");
 
+        Console.Clear();
+        Console.SetCursorPosition(35, 5);
+        Console.Write($"[Final time: {_endTime}]\n" +
+            $"\n" +
+            $"\t\t\t\t   [Best time: {_pb}]");
+
+        Console.SetCursorPosition(0, 0);
+
+        pX = 44;
+        pY = 12;
+
+        while (playerDecide)
+        {
+            PlayerDraw(pWrite, pX, pY);
+            PlayerMove();
+        }
+        
+        
+    }
 }
