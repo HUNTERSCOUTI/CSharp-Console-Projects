@@ -13,6 +13,20 @@ public partial class RaceGame
 
     static string Time = "00.000";
 
+    static string TrackToDraw = string.Empty;
+
+    static void PlayerDraw(char toWrite, int x, int y)
+    {
+        Console.SetCursorPosition(x, y);
+        Console.Write(toWrite);
+    }
+
+    static void TrackDraw()
+    {
+        Console.SetCursorPosition(0, 0);
+        Render(LevelSelector(), false);
+    }
+
     public static void PlayerWrite()
     {
         Console.SetCursorPosition(0, 0);
@@ -47,22 +61,21 @@ public partial class RaceGame
         string _pb = pb.ToString(@"ss\.fff");
 
         Console.Clear();
-        Console.SetCursorPosition(35, 5);
-        Console.Write($"[Final time: {_endTime}]\n" +
-            $"\n" +
-            $"\t\t\t\t   [Best time: {_pb}]");
-
         Console.SetCursorPosition(0, 0);
-
         pX = 44;
         pY = 12;
-
         while (playerDecide)
         {
+            Console.SetCursorPosition(35, 5);
+            Console.Write($"[Final time: {_endTime}]\n\n" +
+                $"\t\t\t\t   [Best time: {_pb}]\n\n\n\n" +
+                $"\t\t\t\t   [ ] \t\t [ ]\n" +
+                $"\t\t\t\tPlay again \t Exit");
+
             PlayerDraw(pWrite, pX, pY);
             PlayerMove();
+            
         }
-        
         
     }
 }

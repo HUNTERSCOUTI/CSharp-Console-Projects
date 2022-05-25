@@ -20,6 +20,8 @@ public partial class RaceGame
     static int pX = 54;
     static int pY = 5;
 
+    static int currentTrack = 1;
+
     static Stopwatch timer = new Stopwatch();
     public static TimeSpan pb;
     static TimeSpan endTime;
@@ -34,7 +36,7 @@ public partial class RaceGame
             TimeWrite();
             PlayerWrite();
             PlayerMove();
-            Console.Write(pX);
+            //Console.Write(pX);
             if (moveOffGoal)
             {
                 TrackDraw();
@@ -45,7 +47,7 @@ public partial class RaceGame
         AfterGameScreen();
     }
 
-    static char BoardAt(int x, int y) => Track1[y * 108 + x];
+    static char BoardAt(int x, int y) => LevelSelector()[y * 108 + x];
 
     static bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|';
 
@@ -60,6 +62,13 @@ public partial class RaceGame
             return true;
         }
         return false;
+    }
+
+    static string LevelSelector()
+    {
+        string[] Levels = new string[] { Track1, Track2 };
+
+        return Levels[currentTrack];
     }
 
     static string TimeCalc(string _time) //Calculates the times when starting and when ended
@@ -99,7 +108,6 @@ public partial class RaceGame
         if (Console.KeyAvailable)
         {
             var input = Console.ReadKey().Key;
-
 
             switch (input)
             {
@@ -141,7 +149,7 @@ public partial class RaceGame
                 moveOffGoal = false;
             }
 
-            if (IsGoingTheWrongWay(newX, newY))
+            if (IsGoingTheWrongWay(newX, newY)) // Not working yet
             {
                 Console.Clear();
                 Console.Write("wrong way");
@@ -164,18 +172,6 @@ public partial class RaceGame
             pY = newY;
         }
         
-    }
-
-    static void PlayerDraw(char toWrite, int x, int y)
-    {
-        Console.SetCursorPosition(x, y);
-        Console.Write(toWrite);
-    }
-
-    static void TrackDraw()
-    {
-        Console.SetCursorPosition(0, 0);
-        Render(Track1, false);
     }
 
     static void Render(string @string, bool renderSpace = true)
