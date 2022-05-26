@@ -20,7 +20,7 @@ public partial class RaceGame
     static int pX = 54;
     static int pY = 5;
 
-    static int currentTrack = 1;
+    static int currentTrack = 0;
 
     static Stopwatch timer = new Stopwatch();
     public static TimeSpan pb;
@@ -36,7 +36,6 @@ public partial class RaceGame
             TimeWrite();
             PlayerWrite();
             PlayerMove();
-            //Console.Write(pX);
             if (moveOffGoal)
             {
                 TrackDraw();
@@ -54,6 +53,8 @@ public partial class RaceGame
     static bool OnGoal(int x, int y) => BoardAt(x, y) is '|';
 
     static bool CanMove(int x, int y) => !IsWall(x, y);
+
+    public static (int Left, int Top) GetCursorPosition() => (pX, pY);
 
     static bool IsGoingTheWrongWay(int x, int y)
     {
@@ -170,27 +171,17 @@ public partial class RaceGame
         {
             pX = newX;
             pY = newY;
-        }
-        
-    }
 
-    static void Render(string @string, bool renderSpace = true)
-    {
-        int x = Console.CursorLeft;
-        int y = Console.CursorTop;
-        foreach (char c in @string)
-        {
-            if (c is '\n')
+            if(GetCursorPosition() == (36, 11)) // Play again
             {
-                Console.SetCursorPosition(x, ++y);
-            }
-            else if (c is not ' ' || c is not '|' || renderSpace)
+                pX = 54;
+                pY = 5;
+                run = true;
+                Run();
+            } 
+            else if (GetCursorPosition() == (50, 11)) // Exit
             {
-                Console.Write(c);
-            }
-            else
-            {
-                Console.SetCursorPosition(Console.CursorLeft + 1, Console.CursorTop);
+
             }
         }
     }

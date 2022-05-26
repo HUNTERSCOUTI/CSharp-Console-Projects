@@ -78,4 +78,25 @@ public partial class RaceGame
         }
         
     }
+
+    static void Render(string @string, bool renderSpace = true)
+    {
+        int x = Console.CursorLeft;
+        int y = Console.CursorTop;
+        foreach (char c in @string)
+        {
+            if (c is '\n')
+            {
+                Console.SetCursorPosition(x, ++y);
+            }
+            else if (c is not ' ' || c is not '|' || renderSpace)
+            {
+                Console.Write(c);
+            }
+            else
+            {
+                Console.SetCursorPosition(Console.CursorLeft + 1, Console.CursorTop);
+            }
+        }
+    }
 }
