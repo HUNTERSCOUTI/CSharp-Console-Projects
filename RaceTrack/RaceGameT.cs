@@ -1,92 +1,85 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RaceTrack;
+﻿namespace RaceTrack;
 
 public partial class RaceGame
 {
-    const char wallV = '║'; // NOT USED CURRENTLY
-    const char wallH = '═'; // NOT USED CURRENTLY
+    public static char[][] Track1 =
+    {
+        "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗".ToCharArray(),
+        "║                                                     |                                                   ║".ToCharArray(),
+        "║                                                     |                                                   ║".ToCharArray(),
+        "║                                                     |                                                   ║".ToCharArray(),
+        "║                                                     |                                                   ║".ToCharArray(),
+        "║                                                     #                                                   ║".ToCharArray(),
+        "║                                                     |                                                   ║".ToCharArray(),
+        "║                                                     |                                                   ║".ToCharArray(),
+        "║                                                     |                                                   ║".ToCharArray(),
+        "║                  ╔═══════════════════════════════════════════════════════════════════╗                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ║                                                                   ║                  ║".ToCharArray(),
+        "║                  ╚═══════════════════════════════════════════════════════════════════╝                  ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "║                                                                                                         ║".ToCharArray(),
+        "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝".ToCharArray(),
+    };
 
-    public static string Track1 =
-        "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                  ╔═══════════════════════════════════════════════════════════════════╗                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ╚═══════════════════════════════════════════════════════════════════╝                  ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝";
+    public static char[][] Track2 =
+    {
+        "╔═══════════════════════════════════════════════════════════════════════════╗".ToCharArray(),
+        "║                                        |                                  ║".ToCharArray(),
+        "║                                        |                                  ║".ToCharArray(),
+        "║                                        |                                  ║".ToCharArray(),
+        "║                                        |      ╔══╗                        ║".ToCharArray(),
+        "║                                        #      ║║║║                        ║".ToCharArray(),
+        "║                                        |      ╚══╝                        ║".ToCharArray(),
+        "║                                        |                                  ║".ToCharArray(),
+        "║                                        |                                  ║".ToCharArray(),
+        "║                  ╔═════════════════════════════════════╗                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ║                                     ║                  ║".ToCharArray(),
+        "║                  ╚═════════════════════════════════════╝                  ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "║                                                                           ║".ToCharArray(),
+        "╚═══════════════════════════════════════════════════════════════════════════╝".ToCharArray(),
+    };
 
-    public static string Track2 =
-        "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                       ╔══╗                        ║\n" +
-        "║                                                     |                       ║║║║                        ║\n" +
-        "║                                                     |                       ╚══╝                        ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                                                     |                                                   ║\n" +
-        "║                  ╔═══════════════════════════════════════════════════════════════════╗                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ║                                                                   ║                  ║\n" +
-        "║                  ╚═══════════════════════════════════════════════════════════════════╝                  ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "║                                                                                                         ║\n" +
-        "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝";
+    
+      public static char[][] TrackMenu =
+    {
+        "             ╔════════════════╗     ".ToCharArray(),
+        " Play Again  ║  |          |  ║ Exit".ToCharArray(),
+        "             ╚══════╗   ╔═════╝     ".ToCharArray(),
+        "                    ║   ║           ".ToCharArray(),
+    };
 
-    /*
-     public static string Track1Goal =
-        "\n" +
-        "\t\t\t\t\t\t\t|\n" +
-        "\t\t\t\t\t\t\t|\n" +
-        "\t\t\t\t\t\t\t|\n" +
-        "\t\t\t\t\t\t\t|\n" +
-        "\t\t\t\t\t\t\t|\n" +
-        "\t\t\t\t\t\t\t|\n" +
-        "\t\t\t\t\t\t\t|\n" +
-        "\t\t\t\t\t\t\t|";
-    */
+    static char[][][] Levels = { TrackMenu, Track1, Track2 };
 }

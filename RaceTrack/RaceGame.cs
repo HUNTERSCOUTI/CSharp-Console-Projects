@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Timers;
 
 namespace RaceTrack;
 
@@ -13,98 +7,99 @@ namespace RaceTrack;
 public partial class RaceGame
 {
     static bool run = true;
-    static bool onRace = false;
-    static bool isStart = true;
-    static bool moveOffGoal = false;
+    static bool playAgain = true;
+    static bool trackComplete = false;
+    static bool completedAllTracks = false;
 
-    static int pX = 54;
-    static int pY = 5;
+    static int playerX = 54;
+    static int playerY = 5;
 
-    static int currentTrack = 0;
+    static int currentTrack = 1;
 
     static Stopwatch timer = new Stopwatch();
     public static TimeSpan pb;
-    static TimeSpan endTime;
 
     public static void Run()
     {
-        if(isStart)
-            TrackDraw();
-        Console.CursorVisible = false;
-        while (run)
+        while (playAgain)
         {
-            TimeWrite();
-            PlayerWrite();
-            PlayerMove();
-            if (moveOffGoal)
+            run = true;
+            currentTrack = 0; //TBC
+            timer.Reset();
+
+            SetPlayerPosPerTrack();
+            TrackDraw();
+
+            Console.CursorVisible = false;
+
+            while (run && !completedAllTracks)
             {
-                TrackDraw();
-                moveOffGoal = false;
-                onRace = true;
+                TimeWrite();
+                PlayerWrite();
+                PlayerMove();
+                if (trackComplete)
+                {
+                    NextTrack();
+                }
             }
+            TimeComplete();
+            TimeWrite();
+            AfterGameScreen();
         }
-        AfterGameScreen();
     }
 
-    static char BoardAt(int x, int y) => LevelSelector()[y * 108 + x];
+    static char BoardAt(int x, int y) => Levels[currentTrack][y][x];
 
-    static bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|';
+    static bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|' and not '#';
 
     static bool OnGoal(int x, int y) => BoardAt(x, y) is '|';
 
     static bool CanMove(int x, int y) => !IsWall(x, y);
 
-    public static (int Left, int Top) GetCursorPosition() => (pX, pY);
+    public static (int Left, int Top) GetCursorPosition() => (playerX, playerY);
 
-    static bool IsGoingTheWrongWay(int x, int y)
+    static void TimeComplete()
     {
-        if(BoardAt(x, y) is '|' && x - 1 == 54)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    static string LevelSelector()
-    {
-        string[] Levels = new string[] { Track1, Track2 };
-
-        return Levels[currentTrack];
-    }
-
-    static string TimeCalc(string _time) //Calculates the times when starting and when ended
-    {
+        timer.Stop();
         TimeSpan timeTaken = timer.Elapsed;
-        if (onRace == true)
+
+        if (timeTaken < pb)
+            pb = timeTaken;
+    }
+
+    static void SetPlayerPosPerTrack()
+    {
+        for (int r = 0; r < Levels[currentTrack].Length; r++)
         {
-            timer = new Stopwatch();
-            timer.Start();
-            onRace = false; isStart = false;
-        } else
-        {
-            if (OnGoal(pX, pY))
+            for (int c = 0; c < Levels[currentTrack][r].Length; c++)
             {
-                timer.Stop();
-                endTime = timeTaken;
-                if(endTime > pb)
-                    pb = endTime;
-                if (!isStart)
+                if (Levels[currentTrack][r][c] is '#')
                 {
-                    run = false;
+                    playerX = c;
+                    playerY = r;
                 }
-                return "00.000";
             }
         }
+    }
 
-        _time = timeTaken.ToString(@"ss\.fff");
-
-        return _time;
+    static void NextTrack() //FIX
+    {
+        bool finalTrack = false;
+        if (currentTrack == Levels.Length)
+            finalTrack = true;
+        if (finalTrack) {
+            currentTrack++;
+            trackComplete = false;
+            Console.Clear();
+            SetPlayerPosPerTrack();
+            TrackDraw();
+        }
     }
 
     static void PlayerMove()
     {
-        var newX = pX;
-        var newY = pY;
+        var newX = playerX;
+        var newY = playerY;
 
         if (Console.KeyAvailable)
         {
@@ -113,76 +108,88 @@ public partial class RaceGame
             switch (input)
             {
                 case ConsoleKey.DownArrow:
-                    ClearOldPos(pX, pY);
+                    ClearOldPos(playerX, playerY);
                     newY++;
                     break;
                 case ConsoleKey.UpArrow:
-                    ClearOldPos(pX, pY);
+                    ClearOldPos(playerX, playerY);
                     newY--;
                     break;
                 case ConsoleKey.LeftArrow:
-                    ClearOldPos(pX, pY);
+                    ClearOldPos(playerX, playerY);
                     newX--;
                     break;
                 case ConsoleKey.RightArrow:
-                    ClearOldPos(pX, pY);
+                    ClearOldPos(playerX, playerY);
                     newX++;
                     break;
                 default:
-                    ClearOldPos(pX+1, pY);
+                    ClearOldPos(playerX+1, playerY);
                     break;
             }
 
-            PlayerCalc(newX, newY);
+            if (run)
+            {
+                PlayerCalcRace(newX, newY);
+            }
+            else
+            {
+                PlayerCalcMenu(newX, newY);
+            }
         }
     }
-    static void PlayerCalc(int newX, int newY)
+    static void PlayerCalcRace(int newX, int newY)
     {
-        //Checks if player is moving off goal
-        if (run)
+        for (int r = 0; r < Levels[currentTrack].Length; r++)
         {
-            if (OnGoal(pX, pY) && BoardAt(newX, newY) == ' ')
+            for (int c = 0; c < Levels[currentTrack][r].Length; c++)
             {
-                moveOffGoal = true;
+                if ((newX, newY) != (c, r) && Levels[currentTrack][r][c] is '|' or '#')
+                {
+                    Console.SetCursorPosition(c, r);
+                    Console.Write('|');
+                }
             }
-            else
-            {
-                moveOffGoal = false;
-            }
+        }
 
-            if (IsGoingTheWrongWay(newX, newY)) // Not working yet
-            {
-                Console.Clear();
-                Console.Write("wrong way");
-                run = false;
-            }
-            //Checks if player is in wall, if so die
-            if (CanMove(newX, newY))
-            {
-                pX = newX;
-                pY = newY;
-            }
-            else
-            {
-                run = false;
-                Die();
-            }
-        } else
+        if (!timer.IsRunning && (playerX, playerY) != (newX, newY))
         {
-            pX = newX;
-            pY = newY;
+            timer.Start();
+        }
 
-            if(GetCursorPosition() == (36, 11)) // Play again
-            {
-                pX = 54;
-                pY = 5;
-                run = true;
-                Run();
-            } 
-            else if (GetCursorPosition() == (50, 11)) // Exit
-            {
+        if (playerX > newX && OnGoal(newX, newY))
+            return;
 
-            }
+        if (playerX < newX && OnGoal(newX, newY))
+            trackComplete = true;
+        
+
+        //Checks if player is in wall, if so die
+        if (CanMove(newX, newY))
+        {
+            playerX = newX;
+            playerY = newY;
+        }
+        else
+        {
+            run = false;
+        }
+    }
+
+    static void PlayerCalcMenu(int newX, int newY)
+    {
+        playerX = newX;
+        playerY = newY;
+
+        if (GetCursorPosition() == (36, 11)) // Play again
+        {
+            playerDecide = false;
+        }
+        else if (GetCursorPosition() == (50, 11)) // Exit
+        {
+            Console.Clear();
+            playAgain = false;
+            playerDecide = false;
         }
     }
 }
