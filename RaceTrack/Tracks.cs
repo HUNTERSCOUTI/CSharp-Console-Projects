@@ -1,8 +1,9 @@
-﻿namespace RaceTrack;
+﻿namespace RaceGame;
 
-public partial class RaceGame
+public class Tracks
 {
-    public static char[][] Track1 =
+
+    public static readonly char[][] Track1 =
     {
         "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗".ToCharArray(),
         "║                                                     |                                                   ║".ToCharArray(),
@@ -37,7 +38,7 @@ public partial class RaceGame
         "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝".ToCharArray(),
     };
 
-    public static char[][] Track2 =
+    public static readonly char[][] Track2 =
     {
         "╔═══════════════════════════════════════════════════════════════════════════╗".ToCharArray(),
         "║                                        |                                  ║".ToCharArray(),
@@ -73,7 +74,7 @@ public partial class RaceGame
     };
 
     
-      public static char[][] TrackMenu =
+      public static readonly char[][] TrackMenu =
     {
         "             ╔════════════════╗     ".ToCharArray(),
         " Play Again  ║  |          |  ║ Exit".ToCharArray(),
@@ -81,5 +82,5 @@ public partial class RaceGame
         "                    ║   ║           ".ToCharArray(),
     };
 
-    static char[][][] Levels = { TrackMenu, Track1, Track2 };
+    public char[][][] Levels = { TrackMenu, Track1, Track2 };
 }

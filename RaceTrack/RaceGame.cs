@@ -1,64 +1,70 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace RaceTrack;
+namespace RaceGame;
 
 
-public partial class RaceGame
+public class RaceGame
 {
-    static bool run = true;
-    static bool playAgain = true;
-    static bool trackComplete = false;
-    static bool completedAllTracks = false;
+    readonly Draw draw;
+    public Tracks Tracks { get; } = new Tracks();
 
-    static int playerX = 54;
-    static int playerY = 5;
+    bool run = true;
+    bool playAgain = true;
+    bool trackComplete = false;
+    readonly bool completedAllTracks = false;
+    bool finalTrack = false;
 
-    static int currentTrack = 1;
+    public int playerX = 54;
+    public int playerY = 5;
 
-    static Stopwatch timer = new Stopwatch();
-    public static TimeSpan pb;
+    public int currentTrack = 1;
 
-    public static void Run()
+    public Stopwatch timer = new Stopwatch();
+    public TimeSpan pb;
+    public RaceGame()
+    {
+        draw = new Draw(this);
+    }
+
+    public void Run()
     {
         while (playAgain)
         {
             run = true;
-            currentTrack = 0; //TBC
+            currentTrack = 1; //TBC
             timer.Reset();
 
             SetPlayerPosPerTrack();
-            TrackDraw();
+
+            draw.TrackDraw();
 
             Console.CursorVisible = false;
 
             while (run && !completedAllTracks)
             {
-                TimeWrite();
-                PlayerWrite();
+                draw.TimeWrite();
+                draw.PlayerWrite();
                 PlayerMove();
-                if (trackComplete)
-                {
-                    NextTrack();
-                }
+                NextTrack();
             }
             TimeComplete();
-            TimeWrite();
-            AfterGameScreen();
+            draw.TimeWrite();
+            draw.AfterGameScreen();
         }
     }
 
-    static char BoardAt(int x, int y) => Levels[currentTrack][y][x];
+    public char BoardAt(int x, int y) => Tracks.Levels[currentTrack][y][x];
 
-    static bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|' and not '#';
+    public bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|' and not '#';
 
-    static bool OnGoal(int x, int y) => BoardAt(x, y) is '|';
+    public bool OnGoal(int x, int y) => BoardAt(x, y) is '|' or '#';
 
-    static bool CanMove(int x, int y) => !IsWall(x, y);
+    public bool CanMove(int x, int y) => !IsWall(x, y);
 
-    public static (int Left, int Top) GetCursorPosition() => (playerX, playerY);
+    public (int Left, int Top) GetCursorPosition() => (playerX, playerY);
 
-    static void TimeComplete()
+    public void TimeComplete()
     {
         timer.Stop();
         TimeSpan timeTaken = timer.Elapsed;
@@ -67,13 +73,15 @@ public partial class RaceGame
             pb = timeTaken;
     }
 
-    static void SetPlayerPosPerTrack()
+    public void SetPlayerPosPerTrack()
     {
-        for (int r = 0; r < Levels[currentTrack].Length; r++)
+        var level = Tracks.Levels;
+
+        for (int r = 0; r < level[currentTrack].Length; r++)
         {
-            for (int c = 0; c < Levels[currentTrack][r].Length; c++)
+            for (int c = 0; c < level[currentTrack][r].Length; c++)
             {
-                if (Levels[currentTrack][r][c] is '#')
+                if (level[currentTrack][r][c] is '#')
                 {
                     playerX = c;
                     playerY = r;
@@ -82,21 +90,25 @@ public partial class RaceGame
         }
     }
 
-    static void NextTrack() //FIX
+    public void NextTrack() //FIX
     {
-        bool finalTrack = false;
-        if (currentTrack == Levels.Length)
-            finalTrack = true;
-        if (finalTrack) {
-            currentTrack++;
-            trackComplete = false;
-            Console.Clear();
-            SetPlayerPosPerTrack();
-            TrackDraw();
+
+        if (trackComplete)
+        {
+            if (currentTrack == Tracks.Levels.Length)
+                finalTrack = true;
+            if (!finalTrack)
+            {
+                currentTrack++;
+                trackComplete = false;
+                Console.Clear();
+                SetPlayerPosPerTrack();
+                draw.TrackDraw();
+            }
         }
     }
 
-    static void PlayerMove()
+    public void PlayerMove()
     {
         var newX = playerX;
         var newY = playerY;
@@ -108,23 +120,23 @@ public partial class RaceGame
             switch (input)
             {
                 case ConsoleKey.DownArrow:
-                    ClearOldPos(playerX, playerY);
+                    draw.ClearOldPos(playerX, playerY);
                     newY++;
                     break;
                 case ConsoleKey.UpArrow:
-                    ClearOldPos(playerX, playerY);
+                    draw.ClearOldPos(playerX, playerY);
                     newY--;
                     break;
                 case ConsoleKey.LeftArrow:
-                    ClearOldPos(playerX, playerY);
+                    draw.ClearOldPos(playerX, playerY);
                     newX--;
                     break;
                 case ConsoleKey.RightArrow:
-                    ClearOldPos(playerX, playerY);
+                    draw.ClearOldPos(playerX, playerY);
                     newX++;
                     break;
                 default:
-                    ClearOldPos(playerX+1, playerY);
+                    draw.ClearOldPos(playerX+1, playerY);
                     break;
             }
 
@@ -138,13 +150,15 @@ public partial class RaceGame
             }
         }
     }
-    static void PlayerCalcRace(int newX, int newY)
+    public void PlayerCalcRace(int newX, int newY)
     {
-        for (int r = 0; r < Levels[currentTrack].Length; r++)
+        var level = Tracks.Levels;
+
+        for (int r = 0; r < level[currentTrack].Length; r++)
         {
-            for (int c = 0; c < Levels[currentTrack][r].Length; c++)
+            for (int c = 0; c < level[currentTrack][r].Length; c++)
             {
-                if ((newX, newY) != (c, r) && Levels[currentTrack][r][c] is '|' or '#')
+                if ((newX, newY) != (c, r) && level[currentTrack][r][c] is '|' or '#')
                 {
                     Console.SetCursorPosition(c, r);
                     Console.Write('|');
@@ -162,7 +176,7 @@ public partial class RaceGame
 
         if (playerX < newX && OnGoal(newX, newY))
             trackComplete = true;
-        
+
 
         //Checks if player is in wall, if so die
         if (CanMove(newX, newY))
@@ -176,20 +190,20 @@ public partial class RaceGame
         }
     }
 
-    static void PlayerCalcMenu(int newX, int newY)
+    public void PlayerCalcMenu(int newX, int newY)
     {
         playerX = newX;
         playerY = newY;
 
         if (GetCursorPosition() == (36, 11)) // Play again
         {
-            playerDecide = false;
+            draw.playerDecide = false;
         }
         else if (GetCursorPosition() == (50, 11)) // Exit
         {
             Console.Clear();
             playAgain = false;
-            playerDecide = false;
+            draw.playerDecide = false;
         }
     }
 }
