@@ -82,5 +82,5 @@ public class Tracks
         "                    ║   ║           ".ToCharArray(),
     };
 
-    public char[][][] Levels = { TrackMenu, Track1, Track2 };
+    public char[][][] levels = { TrackMenu, Track1, Track2 };
 }

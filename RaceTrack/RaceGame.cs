@@ -6,55 +6,55 @@ namespace RaceGame;
 
 public class RaceGame
 {
-    readonly Draw draw;
+    private readonly Draw _draw;
     public Tracks Tracks { get; } = new Tracks();
 
-    bool run = true;
-    bool playAgain = true;
-    bool trackComplete = false;
-    readonly bool completedAllTracks = false;
-    bool finalTrack = false;
+    private bool _run = true;
+    private bool _playAgain = true;
+    private bool _trackComplete = false;
+    private const bool CompletedAllTracks = false;
+    private bool _finalTrack = false;
 
     public int playerX = 54;
     public int playerY = 5;
 
     public int currentTrack = 1;
 
-    public Stopwatch timer = new Stopwatch();
+    public Stopwatch timer = new();
     public TimeSpan pb;
     public RaceGame()
     {
-        draw = new Draw(this);
+        _draw = new Draw(this);
     }
 
     public void Run()
     {
-        while (playAgain)
+        while (_playAgain)
         {
-            run = true;
+            _run = true;
             currentTrack = 1; //TBC
             timer.Reset();
 
             SetPlayerPosPerTrack();
 
-            draw.TrackDraw();
+            _draw.TrackDraw();
 
             Console.CursorVisible = false;
 
-            while (run && !completedAllTracks)
+            while (_run && !CompletedAllTracks)
             {
-                draw.TimeWrite();
-                draw.PlayerWrite();
+                _draw.TimeWrite();
+                _draw.PlayerWrite();
                 PlayerMove();
                 NextTrack();
             }
             TimeComplete();
-            draw.TimeWrite();
-            draw.AfterGameScreen();
+            _draw.TimeWrite();
+            _draw.AfterGameScreen();
         }
     }
 
-    public char BoardAt(int x, int y) => Tracks.Levels[currentTrack][y][x];
+    public char BoardAt(int x, int y) => Tracks.levels[currentTrack][y][x];
 
     public bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|' and not '#';
 
@@ -67,7 +67,7 @@ public class RaceGame
     public void TimeComplete()
     {
         timer.Stop();
-        TimeSpan timeTaken = timer.Elapsed;
+        var timeTaken = timer.Elapsed;
 
         if (timeTaken < pb)
             pb = timeTaken;
@@ -75,11 +75,11 @@ public class RaceGame
 
     public void SetPlayerPosPerTrack()
     {
-        var level = Tracks.Levels;
+        var level = Tracks.levels;
 
-        for (int r = 0; r < level[currentTrack].Length; r++)
+        for (var r = 0; r < level[currentTrack].Length; r++)
         {
-            for (int c = 0; c < level[currentTrack][r].Length; c++)
+            for (var c = 0; c < level[currentTrack][r].Length; c++)
             {
                 if (level[currentTrack][r][c] is '#')
                 {
@@ -90,20 +90,19 @@ public class RaceGame
         }
     }
 
-    public void NextTrack() //FIX
+    public void NextTrack()
     {
-
-        if (trackComplete)
+        if (_trackComplete)
         {
-            if (currentTrack == Tracks.Levels.Length)
-                finalTrack = true;
-            if (!finalTrack)
+            if (currentTrack == Tracks.levels.Length)
+                _finalTrack = true;
+            if (!_finalTrack)
             {
                 currentTrack++;
-                trackComplete = false;
+                _trackComplete = false;
                 Console.Clear();
                 SetPlayerPosPerTrack();
-                draw.TrackDraw();
+                _draw.TrackDraw();
             }
         }
     }
@@ -120,27 +119,27 @@ public class RaceGame
             switch (input)
             {
                 case ConsoleKey.DownArrow:
-                    draw.ClearOldPos(playerX, playerY);
+                    _draw.ClearOldPos(playerX, playerY);
                     newY++;
                     break;
                 case ConsoleKey.UpArrow:
-                    draw.ClearOldPos(playerX, playerY);
+                    _draw.ClearOldPos(playerX, playerY);
                     newY--;
                     break;
                 case ConsoleKey.LeftArrow:
-                    draw.ClearOldPos(playerX, playerY);
+                    _draw.ClearOldPos(playerX, playerY);
                     newX--;
                     break;
                 case ConsoleKey.RightArrow:
-                    draw.ClearOldPos(playerX, playerY);
+                    _draw.ClearOldPos(playerX, playerY);
                     newX++;
                     break;
                 default:
-                    draw.ClearOldPos(playerX+1, playerY);
+                    _draw.ClearOldPos(playerX+1, playerY);
                     break;
             }
 
-            if (run)
+            if (_run)
             {
                 PlayerCalcRace(newX, newY);
             }
@@ -152,11 +151,11 @@ public class RaceGame
     }
     public void PlayerCalcRace(int newX, int newY)
     {
-        var level = Tracks.Levels;
+        var level = Tracks.levels;
 
-        for (int r = 0; r < level[currentTrack].Length; r++)
+        for (var r = 0; r < level[currentTrack].Length; r++)
         {
-            for (int c = 0; c < level[currentTrack][r].Length; c++)
+            for (var c = 0; c < level[currentTrack][r].Length; c++)
             {
                 if ((newX, newY) != (c, r) && level[currentTrack][r][c] is '|' or '#')
                 {
@@ -175,7 +174,7 @@ public class RaceGame
             return;
 
         if (playerX < newX && OnGoal(newX, newY))
-            trackComplete = true;
+            _trackComplete = true;
 
 
         //Checks if player is in wall, if so die
@@ -186,7 +185,7 @@ public class RaceGame
         }
         else
         {
-            run = false;
+            _run = false;
         }
     }
 
@@ -197,13 +196,13 @@ public class RaceGame
 
         if (GetCursorPosition() == (36, 11)) // Play again
         {
-            draw.playerDecide = false;
+            _draw.playerDecide = false;
         }
         else if (GetCursorPosition() == (50, 11)) // Exit
         {
             Console.Clear();
-            playAgain = false;
-            draw.playerDecide = false;
+            _playAgain = false;
+            _draw.playerDecide = false;
         }
     }
 }

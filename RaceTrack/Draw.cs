@@ -4,17 +4,17 @@ namespace RaceGame;
 
 public class Draw
 {
-    readonly RaceGame logic;
-    readonly Tracks tracks;
+    private readonly RaceGame _logic;
+    private readonly Tracks _tracks;
 
-    public const char pWrite = '*';
+    public const char PWrite = '*';
 
     public bool playerDecide = true;
 
     public Draw(RaceGame raceGame)
     {
-        logic = raceGame;
-        tracks = logic.Tracks;
+        _logic = raceGame;
+        _tracks = _logic.Tracks;
     }
 
     public void PlayerDraw(char toWrite, int x, int y)
@@ -25,13 +25,13 @@ public class Draw
 
     public void TrackDraw()
     {
-        var track = logic.currentTrack;
-        var level = tracks.Levels;
+        var track = _logic.currentTrack;
+        var level = _tracks.levels;
 
         Console.SetCursorPosition(0, 0);
-        for(int r = 0; r < level[track].Length; r++)
+        for(var r = 0; r < level[track].Length; r++)
         {
-            for (int c = 0; c < level[track][r].Length; c++)
+            for (var c = 0; c < level[track][r].Length; c++)
             {
                 Console.Write(level[track][r][c]);
             }
@@ -42,7 +42,7 @@ public class Draw
     public void PlayerWrite()
     {
         Console.SetCursorPosition(0, 0);
-        PlayerDraw(pWrite, logic.playerX, logic.playerY); 
+        PlayerDraw(PWrite, _logic.playerX, _logic.playerY); 
     }
 
     public void ClearOldPos(int x, int y)
@@ -53,11 +53,12 @@ public class Draw
 
     public void TimeWrite()
     {
-        logic.pb.ToString(@"ss\.fff");
+        var pb = _logic.pb.ToString(@"ss\.fff");
+        var timeElapsed = _logic.timer.Elapsed.ToString(@"ss\.fff");
 
         Console.SetCursorPosition(45, 35);
-        Console.Write($"Time: {logic.timer.Elapsed.ToString(@"ss\.fff")}\n" +
-       $"\t\t\t\t\t     Best Time: {logic.pb}");   
+        Console.Write($"Time: {timeElapsed}\n" +
+       $"\t\t\t\t\t     Best Time: {pb}");   
     }
 
     public void AfterGameScreen()
@@ -66,18 +67,23 @@ public class Draw
 
         Console.Clear();
         Console.SetCursorPosition(0, 0);
-        logic.playerX = 44;
-        logic.playerY = 12;
+
+        _logic.playerX = 44;
+        _logic.playerY = 12;
+
+        var pb = _logic.pb.ToString(@"ss\.fff");
+        var timeElapsed = _logic.timer.Elapsed.ToString(@"ss\.fff");
+
         while (playerDecide)
         {
             Console.SetCursorPosition(35, 5);
-            Console.Write($"[Final time: {logic.timer.Elapsed.ToString("ss\\.fff")}]\n\n" +
-                $"\t\t\t\t   [Best time: {logic.pb.ToString("ss\\.fff")}]\n\n\n\n" +
+            Console.Write($"[Final time: {timeElapsed}]\n\n" +
+                $"\t\t\t\t   [Best time: {pb}]\n\n\n\n" +
                 $"\t\t\t\t   [ ] \t\t [ ]\n" +
                 $"\t\t\t\tPlay again \t Exit");
 
-            PlayerDraw(pWrite, logic.playerX, logic.playerY);
-            logic.PlayerMove();
+            PlayerDraw(PWrite, _logic.playerX, _logic.playerY);
+            _logic.PlayerMove();
             
         }
         
