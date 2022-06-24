@@ -1,4 +1,4 @@
-# C# Console Projects
+<h1 align="center">C# Console Projects </h1>
 
 - [3 Games](https://github.com/HUNTERSCOUTI/CSharp-Console-Projects/tree/main/3Games)
 - [Tents](https://github.com/HUNTERSCOUTI/CSharp-Console-Projects/tree/main/Tents)
