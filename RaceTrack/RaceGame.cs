@@ -3,17 +3,16 @@ using System.Diagnostics;
 
 namespace RaceGame;
 
-
 public class RaceGame
 {
     private readonly Draw _draw;
-    public Tracks Tracks { get; } = new Tracks();
+    public Tracks tracks = new();
 
     private bool _run = true;
     private bool _playAgain = true;
+    private bool _finalTrack = false;
     private bool _trackComplete = false;
     private const bool CompletedAllTracks = false;
-    private bool _finalTrack = false;
 
     public int playerX = 54;
     public int playerY = 5;
@@ -32,7 +31,7 @@ public class RaceGame
         while (_playAgain)
         {
             _run = true;
-            currentTrack = 1; //TBC
+            currentTrack = 1;
             timer.Reset();
 
             SetPlayerPosPerTrack();
@@ -54,7 +53,7 @@ public class RaceGame
         }
     }
 
-    public char BoardAt(int x, int y) => Tracks.levels[currentTrack][y][x];
+    public char BoardAt(int x, int y) => tracks.levels[currentTrack][y][x];
 
     public bool IsWall(int x, int y) => BoardAt(x, y) is not ' ' and not '|' and not '#';
 
@@ -75,7 +74,7 @@ public class RaceGame
 
     public void SetPlayerPosPerTrack()
     {
-        var level = Tracks.levels;
+        var level = tracks.levels;
 
         for (var r = 0; r < level[currentTrack].Length; r++)
         {
@@ -94,7 +93,7 @@ public class RaceGame
     {
         if (_trackComplete)
         {
-            if (currentTrack == Tracks.levels.Length)
+            if (currentTrack == tracks.levels.Length)
                 _finalTrack = true;
             if (!_finalTrack)
             {
@@ -151,7 +150,7 @@ public class RaceGame
     }
     public void PlayerCalcRace(int newX, int newY)
     {
-        var level = Tracks.levels;
+        var level = tracks.levels;
 
         for (var r = 0; r < level[currentTrack].Length; r++)
         {

@@ -14,7 +14,7 @@ public class Draw
     public Draw(RaceGame raceGame)
     {
         _logic = raceGame;
-        _tracks = _logic.Tracks;
+        _tracks = _logic.tracks;
     }
 
     public void PlayerDraw(char toWrite, int x, int y)
