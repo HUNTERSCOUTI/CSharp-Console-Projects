@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3games", "3Games\3games.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F67049A1-9C33-4384-A621-4539CE77D562}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -25,8 +26,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test Code Project", "Test Code Project\Test Code Project.csproj", "{1B8CC87C-DB06-4440-865F-8AA4E736D285}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceGame", "RaceTrack\RaceGame.csproj", "{6A4635BA-FC73-44B1-872A-BBFE1643CFBE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineImport", "WineImport\WineImport.csproj", "{84560BD2-E692-4FC8-819C-D4BC0B6673F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,10 +69,6 @@ Global
 		{6A4635BA-FC73-44B1-872A-BBFE1643CFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A4635BA-FC73-44B1-872A-BBFE1643CFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A4635BA-FC73-44B1-872A-BBFE1643CFBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84560BD2-E692-4FC8-819C-D4BC0B6673F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84560BD2-E692-4FC8-819C-D4BC0B6673F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84560BD2-E692-4FC8-819C-D4BC0B6673F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84560BD2-E692-4FC8-819C-D4BC0B6673F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
