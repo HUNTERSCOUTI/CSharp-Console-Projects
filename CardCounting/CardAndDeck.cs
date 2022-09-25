@@ -5,10 +5,10 @@ using System.Text;
 public class Deck
 {
 
-    public Deck()
+    public Deck(int id)
     {
         Cards = MakeNewDeck();
-        DeckID += 1;
+        DeckID = id;
     }
 
     public int DeckID { get; set; }
@@ -18,9 +18,7 @@ public class Deck
     public List<Card> MakeNewDeck()
     {
         int cardsInASuit = 13;
-
         
-
         foreach (Suits currentSuit in Enum.GetValues(typeof(Suits)))
         {
             for (int i = 1; i <= cardsInASuit; i++)
@@ -31,7 +29,25 @@ public class Deck
         return Cards;
     }
 
-    
+    //public ??? AmountOfDecks(int amount)
+    //{
+    //    List<Deck> decks = new List<Deck>();
+    //    List <Card> cards = new List<Card>();
+
+    //    for (int i = 0; i < amount; i++)
+    //    {
+    //        ???
+    //    }
+
+    //    return ???
+    //}
+
+    //public ??? Shuffle()
+    //{
+    //    List sort???
+    //}
+
+
 
     public string NameOfCard(Card card)
     {
