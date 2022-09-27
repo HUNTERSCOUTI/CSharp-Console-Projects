@@ -2,22 +2,22 @@ namespace SchoolTaskDataBase;
 
 class Student
  {
-    #pragma warning disable CS8618
-    public int ID { get; set; } //(Database only) Student ID
+#pragma warning disable CS8618
+    public int ID; //(Database only) Student ID
 
-    public string Name { get; set; }
+    public string Name;
 
-    public int Age { get; set; }
+    public int Age;
 
-    public char Gender { get; set; }
+    public char Gender;
 
-    public string Adress { get; set; }
+    public string Adress;
 
-    public string EdLine { get; set; } //Education line ex. "Datatechnician and IT-Support".
+    public string EdLine; //Education line ex. "Datatechnician and IT-Support".
 
-    public string Class { get; set; }
+    public string Class;
 
-    public List<string> Subjects { get; set; } = new List<string>();
+    public List<string> Subjects = new List<string>();
 
     public override string ToString() => $"\nID: {ID}\nName: {Name} \nAge: {Age} \nGender: {Gender} \nAdress: {Adress} " +
         $"\nEducation Line: {EdLine} \nClass: {Class} \nSubjects: " + String.Join(", ", Subjects) +"\n";
