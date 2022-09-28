@@ -4,8 +4,10 @@ public class Program
 {
     public static void Main()
     {
-        Deck deck1 = new Deck(1);
-        Deck deck2 = new Deck(2);
+        int newDeckID = 0;
+
+        Deck deck1 = new Deck(newDeckID++);
+        Deck deck2 = new Deck(newDeckID++);
 
         List<Deck> Decks = new List<Deck>();
         Decks.Add(deck1);
