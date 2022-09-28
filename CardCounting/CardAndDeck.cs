@@ -1,54 +1,39 @@
-﻿
+﻿using System.Text;
 
-using System.Text;
 
-public class Deck
+public class Actions
 {
-
-    public Deck(int id)
-    {
-        Cards = MakeNewDeck();
-        DeckID = id;
-    }
-
-    public int DeckID { get; set; }
-    static readonly Random rng = new Random();
-    List<Card> Cards = new();
+    public Deck deck = new();
 
     public List<Card> MakeNewDeck()
     {
         int cardsInASuit = 13;
-        
+        List<Card> cards = new();
+
         foreach (Suits currentSuit in Enum.GetValues(typeof(Suits)))
         {
             for (int i = 1; i <= cardsInASuit; i++)
             {
-                Cards.Add(new Card(i, currentSuit));
+                cards.Add(new Card(i, currentSuit));
             }
         }
-        return Cards;
+        return cards;
     }
 
-    //public ??? AmountOfDecks(int amount)
-    //{
-    //    List<Deck> decks = new List<Deck>();
-    //    List <Card> cards = new List<Card>();
+    public List<Deck> AmountOfDecks(int amount)
+    {
+        List<Deck> decks = new List<Deck>();
+        List<Card> cards = new List<Card>();
 
-    //    for (int i = 0; i < amount; i++)
-    //    {
-    //        ???
-    //    }
+        for (int i = 0; i < amount; i++)
+        {
 
-    //    return ???
-    //}
+        }
 
-    //public ??? Shuffle()
-    //{
-    //    List sort???
-    //}
+        return decks;
+    }
 
-
-
+    //Card Name to be printed
     public string NameOfCard(Card card)
     {
         string name;
@@ -75,15 +60,38 @@ public class Deck
         return name;
     }
 
+    //Shuffle
+    public void Shuffle()
+    {
+        
+    }
+}
+
+public class Deck
+{
+    public Actions actions = new();
+    public Deck()
+    {
+
+    }
+
+    public Deck(int id)
+    {
+        Cards = actions.MakeNewDeck();
+        DeckID = id;
+    }
+
+    public int DeckID { get; set; }
+    public List<Card> Cards = new();
+
     // How it's printed
     public override string ToString()
     {
-        const int spaceBetween = 12;
         var sb = new StringBuilder();
         int index = 0;
         while (index < Cards.Count)
         {
-            sb.Append($"{NameOfCard(Cards[index])} of {Cards[index].SuitOnCard}    ");
+            sb.Append($"{actions.NameOfCard(Cards[index])} of {Cards[index].SuitOnCard}    ");
             index++;
             if (index % 4 == 0)
             {
