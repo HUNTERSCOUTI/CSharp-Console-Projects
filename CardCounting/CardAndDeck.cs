@@ -3,31 +3,33 @@
 
 public class Actions
 {
-    public Deck deck = new();
+    Random rng = new Random();
 
-    public List<Card> MakeNewDeck()
+    public Deck MakeNewDeck()
     {
-        int cardsInASuit = 13;
+        Deck deck = new();
+        Card card = new();
+
         List<Card> cards = new();
 
         foreach (Suits currentSuit in Enum.GetValues(typeof(Suits)))
         {
-            for (int i = 1; i <= cardsInASuit; i++)
+            for (int i = 1; i <= card.cardsInASuit; i++)
             {
                 cards.Add(new Card(i, currentSuit));
             }
         }
-        return cards;
+        deck.Cards = cards;
+        return deck;
     }
 
-    public List<Deck> AmountOfDecks(int amount)
+    public List<Deck> MakeAmountOfDecks(int amount)
     {
         List<Deck> decks = new List<Deck>();
-        List<Card> cards = new List<Card>();
 
         for (int i = 0; i < amount; i++)
         {
-
+            decks.Add(MakeNewDeck());
         }
 
         return decks;
@@ -61,28 +63,36 @@ public class Actions
     }
 
     //Shuffle
-    public void Shuffle()
+    public Deck ShuffleDeck(Deck deck)
     {
-        
+        for(int i = 52 - 1; i > 0; i--)
+        {
+            int j = rng.Next(0, i + 1);
+
+            Card temp = deck.Cards[i];
+            deck.Cards[i] = deck.Cards[j];
+            deck.Cards[j] = temp;
+        }
+        return deck;
     }
 }
 
 public class Deck
 {
-    public Actions actions = new();
+    Actions actions = new();
     public Deck()
     {
 
     }
 
-    public Deck(int id)
+    public Deck(List<Card> cards, int id)
     {
-        Cards = actions.MakeNewDeck();
+        Cards = cards;
         DeckID = id;
     }
 
     public int DeckID { get; set; }
-    public List<Card> Cards = new();
+    public List<Card> Cards { get; set; }
 
     // How it's printed
     public override string ToString()
@@ -105,6 +115,10 @@ public class Deck
 
 public class Card
 {
+    public Card()
+    {
+
+    }
     public Card(int number, Suits suit)
     {
         NumberOnCard = number;
@@ -114,6 +128,8 @@ public class Card
     public int NumberOnCard { get; }
 
     public Suits SuitOnCard { get; }
+
+    public int cardsInASuit = 13;
 
 }
 
