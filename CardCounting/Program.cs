@@ -2,19 +2,28 @@
 
 public class Program
 {
+    public static List<Deck> CurrentDecksInUse = new();
     public static void Main()
     {
+        Actions actions = new();
+
         int newDeckID = 0;
 
-        Deck deck1 = new Deck(newDeckID++);
-        Deck deck2 = new Deck(newDeckID++);
-
         List<Deck> Decks = new List<Deck>();
-        Decks.Add(deck1);
-        Decks.Add(deck2);
 
 
+        Console.WriteLine("How many decks?");
+        int amount;
+        amount = int.TryParse(Console.ReadLine(), out var _amount) ? _amount : 0;
 
-        Console.WriteLine();
+        CurrentDecksInUse = actions.MakeAmountOfDecks(amount);
+
+        foreach(var deck in CurrentDecksInUse)
+        {
+            actions.ShuffleDeck(deck);
+            Console.WriteLine(deck);
+        }
+        
+
     }
 }
