@@ -43,16 +43,16 @@ public class Actions
         switch (card.NumberOnCard)
         {
             case 1:
-                name = "Ace";
+                name = "A";
                 break;
             case 11:
-                name = "Jack";
+                name = "J";
                 break;
             case 12:
-                name = "Queen";
+                name = "Q";
                 break;
             case 13:
-                name = "King";
+                name = "K";
                 break;
             default:
                 name = card.NumberOnCard.ToString();
@@ -101,7 +101,7 @@ public class Deck
         int index = 0;
         while (index < Cards.Count)
         {
-            sb.Append($"{actions.NameOfCard(Cards[index])} of {Cards[index].SuitOnCard}    ");
+            sb.Append($"{actions.NameOfCard(Cards[index])}{Cards[index].SuitOnCard.GetChar()}    ");
             index++;
             if (index % 4 == 0)
             {
@@ -139,4 +139,15 @@ public enum Suits
     Diamonds,
     Hearts,
     Spades
+}
+
+public static class MyEnumExtensions
+{
+    public static char GetChar(this Suits value) => value switch 
+    { 
+        Suits.Clubs => '♣',
+        Suits.Diamonds => '♦',
+        Suits.Hearts => '♥',
+        Suits.Spades => '♠',
+    };
 }
