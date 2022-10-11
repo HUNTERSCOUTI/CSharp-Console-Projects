@@ -3,19 +3,43 @@
 class Program
 {
     static float A, B, C;
+    static float x, y, z;
+
     static float cubeWidth = 10;
     static int width = 160;
     static int height = 44;
-    static float[] zBuffer = new float[160 * 40];
-    static char[] charBuffer = new char[160 * 44];
-    int backgroundASCIIcode = ' ';
+
+    static int distanceFromCam = 60;
+    static float incrementSpeed = 0.6F;
 
     public static void Main()
     {
-        while (true)
+        while (true) 
         {
-            
+            for(float cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += incrementSpeed)
+            {
+                for(float cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += incrementSpeed)
+                {
+                    CalculateForSurface(cubeX, cubeY, -cubeWidth, '#');
+                    CalculateForSurface(cubeWidth, cubeY, cubeX, '$');
+                    CalculateForSurface(-cubeWidth, cubeY, -cubeX, '~');
+                    CalculateForSurface(-cubeX, cubeY, cubeWidth, '*');
+                    CalculateForSurface(cubeX, -cubeWidth, -cubeY, ';');
+                    CalculateForSurface(cubeX, cubeWidth, cubeY, '+');
+                }
+            }
+
+            A += 0.005f;
+            B += 0.005f;
+            Thread.Sleep(1);
         }
+    }
+
+    public static void CalculateForSurface(float cubeX, float cubeY, float cubeZ, char ch)
+    {
+        x = CalculateX((int)cubeX, (int)cubeY, (int)cubeZ);
+        y = CalculateY((int)cubeX, (int)cubeY, (int)cubeZ);
+        z = CalculateZ((int)cubeX, (int)cubeY, (int)cubeZ) + distanceFromCam;
     }
 
     public static float CalculateX(int i, int j, int k)
