@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceGame", "RaceTrack\RaceG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardCounting", "CardCounting\CardCounting.csproj", "{2D219012-56C6-48A8-AB59-4808C8BA2663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubeRotation", "CubeRotation\CubeRotation.csproj", "{4D221C0F-3F3A-4B90-A469-FFD488CE3505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CubeRotation", "CubeRotation\CubeRotation.csproj", "{4D221C0F-3F3A-4B90-A469-FFD488CE3505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVIConsole", "DVIConsole\DVIConsole.csproj", "{C227CA40-C3B8-45AE-A957-0840BF9164C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{4D221C0F-3F3A-4B90-A469-FFD488CE3505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D221C0F-3F3A-4B90-A469-FFD488CE3505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D221C0F-3F3A-4B90-A469-FFD488CE3505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C227CA40-C3B8-45AE-A957-0840BF9164C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C227CA40-C3B8-45AE-A957-0840BF9164C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C227CA40-C3B8-45AE-A957-0840BF9164C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C227CA40-C3B8-45AE-A957-0840BF9164C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
