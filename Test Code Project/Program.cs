@@ -1,19 +1,47 @@
-﻿using System;
-using System.Text;
+﻿
+const char block = '■';
+const char empty = ' ';
 
-public class Kata
+string final = string.Empty;
+string test = string.Empty;
+
+int barLength = 20;
+
+double maxHealth = 50;
+double currentHealth = 40;
+
+double tenpercent = maxHealth / 10;
+double fivepercent = maxHealth / 10 / 2;
+
+final += "[";
+
+for (int i = 0; i < barLength; i++)
 {
-    public static void Main()
-    {
-        Console.WriteLine(Likes(new string[0]));
-        Console.WriteLine(Likes(new string[] { "Peter" }));
-        Console.WriteLine(Likes(new string[] { "Jacob", "Alex" }));
-        Console.WriteLine(Likes(new string[] { "Max", "John", "Mark" }));
-        Console.WriteLine(Likes(new string[] { "Alex", "Jacob", "Mark", "Max" }));
-    }
-
-    public static string Likes(string[] name)
-    {
-        
-    }
+    if (currentHealth >= fivepercent)
+        final += block;
+    else
+        final += empty;
+    currentHealth -= fivepercent;
 }
+
+final += "]";
+Console.WriteLine(final);
+
+
+
+
+
+
+
+
+test += "[";
+for (var i = 0; i < 20; ++i)
+{
+    if (i == 10)
+        test += "c";
+    else
+    test += block;
+}
+test += "]";
+Console.SetCursorPosition(0, 1);
+Console.WriteLine(test);
