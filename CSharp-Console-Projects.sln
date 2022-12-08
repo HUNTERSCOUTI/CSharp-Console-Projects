@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CubeRotation", "CubeRotatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVIConsole", "DVIConsole\DVIConsole.csproj", "{C227CA40-C3B8-45AE-A957-0840BF9164C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advent Of Code", "Advent Of Code\Advent Of Code.csproj", "{42EDA826-46E2-408E-9E7A-4F8C0374ED20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{C227CA40-C3B8-45AE-A957-0840BF9164C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C227CA40-C3B8-45AE-A957-0840BF9164C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C227CA40-C3B8-45AE-A957-0840BF9164C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42EDA826-46E2-408E-9E7A-4F8C0374ED20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42EDA826-46E2-408E-9E7A-4F8C0374ED20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42EDA826-46E2-408E-9E7A-4F8C0374ED20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42EDA826-46E2-408E-9E7A-4F8C0374ED20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
