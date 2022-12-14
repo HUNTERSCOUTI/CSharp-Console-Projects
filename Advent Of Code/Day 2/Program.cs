@@ -58,38 +58,45 @@ public class Program
         Console.WriteLine(totalScore);
     }
     */
-    /*
+    /* Day 2, Puzzle 2
     public static void Main()
     {
         string[] input = File.ReadAllLines("C:\\Users\\zilas\\source\\repos\\CSharp-Console-Projects\\Advent Of Code\\Day 2\\RPSInput.txt").ToArray();
-
         int totalScore = 0;
-
-        // X = LOSE
-        // Y = DRAW
-        // Z = WIN
 
         foreach(var line in input)
         {
-
+            int pointsGained = 0;
+            switch (line[2])
+            {
+                case 'Y':
+                    pointsGained = line[0] switch
+                    {
+                        'A' => + 4,
+                        'B' => + 5,
+                        'C' => + 6
+                    };
+                        break;
+                case 'X':
+                    pointsGained = line[0] switch
+                    {
+                        'A' => + 3,
+                        'B' => + 1,
+                        'C' => + 2
+                    };
+                    break;
+                case 'Z':
+                    pointsGained = line[0] switch
+                    {
+                        'A' => + 8,
+                        'B' => + 9,
+                        'C' => + 7
+                    };
+                    break;
+            }
+            totalScore += pointsGained;
         }
-
         Console.WriteLine(totalScore);
     }
     */
-
-    public static void Main()
-    {
-        ReadWeb();
-    }
-
-    public async static Task ReadWeb()
-    {
-        using var client = new HttpClient();
-        client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
-
-        var content = await client.GetStringAsync("https://adventofcode.com/2022/day/2/input");
-
-        Console.WriteLine(content);
-    }
 }
