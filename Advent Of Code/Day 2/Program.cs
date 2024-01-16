@@ -58,6 +58,7 @@ public class Program
         Console.WriteLine(totalScore);
     }
     */
+    
     /* Day 2, Puzzle 2
     public static void Main()
     {

@@ -2,7 +2,7 @@
 
 public class Program
 {
-    /* Day 1, Puzzle 1
+    // Day 1, Puzzle 1
     public static void Main()
     {
         string[] lines = File.ReadAllLines("C:\\Users\\zilas\\source\\repos\\CSharp-Console-Projects\\Advent Of Code\\Day 1\\Calories.txt").ToArray();
@@ -23,7 +23,7 @@ public class Program
             }
         }
         Console.WriteLine(highestNum);
-    }*/
+    }
 
     /* Day 1, Puzzle 2
     public static void Main()
