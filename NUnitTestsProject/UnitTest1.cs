@@ -33,7 +33,8 @@ public class Tests
 
 
         //Random Test Cases
-        int amountOfTests = 10;
+        int amountOfTests = 100;
+        int chanceOfUpperCase = 20; // 20% chance per 100th character
 
         Random rnd = new();
 
@@ -46,12 +47,12 @@ public class Tests
         {
             StringBuilder sb = new();
             sb.Append((char)rnd.Next(97, 123));
-            int length = rnd.Next(10, 200);
+            int length = rnd.Next(10, 1011);
 
             for (int j = 0; j < length; ++j)
             {
                 char c = (char)rnd.Next(97, 123);
-                if (rnd.Next(0, 5) == 0)
+                if (rnd.Next(0, chanceOfUpperCase) == 0)
                 {
                     c = char.ToUpper(c);
                 }
